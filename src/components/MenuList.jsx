@@ -1,13 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
 import { foods } from '../data.js'
+import { useEffect } from 'react'
 
-export const MenuList = () => {
+export const MenuList = ({selectedCateg}) => {
   const [menu, setmenu] = useState(foods)
+  console.log(selectedCateg)
+  useEffect(() => {
+    setmenu(()=> selectedCateg =='all'? foods : foods.filter(({category}) => category==selectedCateg))
+  }, [selectedCateg])
+  
   
     return (
     <div className='flex flex-row flex-wrap gap-3 justify-center p-5'>
-      {menu.map(({id, title, category, price, img, desc})=> 
+      {menu.map(({id, title, category, price, img, desc})=>
         <div key={id} className='flex flex-col brp500:flex-row gap-4 basis-full  brp900:basis-[calc(50%-20px)]'>
             <div className='flex-1'>
                 <img className='border-5 border-white rounded w-full h-48 object-cover' src={'images/'+img} alt="title" />

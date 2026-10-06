@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import { MenuList } from './components/MenuList'
+import { MyHeader } from './components/MyHeader'
+import { Categories } from './components/Categories'
 
 export default function App() {
+  const [selectedCateg, setSelectedCateg] = useState('all')
   return (
-    <>
-      <div className='bg-gray-900 text-white' >
-        <header className='shadow-3xl p-6 bg-gray-900'>
-          <h1 className='text-center text-yellow-400 font-bold text-2xl'>Our Menu</h1>
-        </header>
+      <div className='bg-gray-900 text-white min-h-screen' >
+        <MyHeader>
+          <Categories selectedCateg={selectedCateg} setSelectedCateg={setSelectedCateg}/>
+        </MyHeader>
         <main className='max-w-[1200px] mx-auto'>
-          <MenuList />
+          <MenuList selectedCateg={selectedCateg} />
         </main>
       </div>
-    </>
   )
 }
